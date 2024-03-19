@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'order/css/pizzawebsitestyles.css' %}">
+    <meta charset="UTF-8">
+    <title>Пицца!!!!</title>
+</head>
+<body>
+
+{% block menu %}
+<header id="header">
+    <a href="{% url 'index' %}"><img id="header-icon" src="{% static 'order/images/pngwing.com.png' %}"></a>
+    <a href="{% url 'index' %}" class="header-but">Каталог</a>
+
+    <a href="{% url 'recall' %}" class="header-but">Обратная связь</a>
+    {% if user.is_superuser %}
+    <a href="{% url 'add_post' %}" class="header-but">Добавить</a>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="header-but" >Выйти</a>
+    {% else %}
+    <a href="{% url 'login' %}" class="header-but">Войти</a>
+    {% endif %}
+
+     <a href="{% url 'cart:cart_detail' %}" class="header-but header-but-right">
+{% with total_items=cart|length %}
+
+{% if cart|length > 0 %}
+
+Корзина |
+
+{{ total_items }}
+
+    {%else%}
+    Корзина пустая
+    {% endif %}
+    {% endwith %}
+
+</a>
+
+</header>
+
+<div id="menu">
+<a class="menu-but" href="#">Закуски</a>
+<a class="menu-but" href="#pizza-title-name">Пиццы</a>
+<a class="menu-but" href="#">Напитки</a>
+<a class="menu-but" href="#">Десерты</a>
+<a class="menu-but" href="#">Соусы</a>
+<a class="menu-but" href="#">Кофе</a>
+<a class="menu-but" href="#">Комбо</a>
+<a class="menu-but" href="#">Коктейли</a>
+<a class="menu-but" href="#">Другие товары</a>
+<a class="menu-but" href="#">Акции</a>
+</div>
+
+
+{% block content %}
+{% endblock %}
+
+
+{% endblock menu %}
+
+</body>
+</html>

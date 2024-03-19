@@ -1,0 +1,37 @@
+{% extends 'order/base.html' %}
+
+{% block content %}
+
+
+
+
+<div class="placeholder-main">
+    <div class="title">{{post.title}}</div>
+    <img src="{{ post.photo.url }}" class="post-img" alt="Пицца">
+    <div class="post-attr">
+    <p class="post-desc" >{{post.desc}}</p>
+
+
+        <form method="post" class="post-size">
+            <input value="1"  name="size" class="post-input" type="radio">Маленькая</input>
+            <input value="2" name="size" class="post-input" type="radio">Средняя</input>
+            <input value="3" name="size" class="post-input" type="radio">Большая</input>
+        </form>
+
+   <form action="{% url 'cart:cart_add' post.id %}" method="post">
+        {{ cart_product_form }}
+       {% csrf_token %}
+       <input  id="post-order" type="submit" value="В корзину за {{post.price}}р">
+   </form>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'order/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="placeholder-main">
+    <div class="title">Пиццы</div>
+    {% for pizza in pizzas %}
+    <div class="product">
+
+        <img class="cat-pizza" src="{{ pizza.photo.url }}" alt="Пеперони">
+        <h3 class="name-pizza">{{pizza.title}}</h3>
+        <p class="pizza-desc">{{pizza.desc}}</p>
+
+        <div class="cash"><p class="order-link price">{{ pizza.price }}р</p>
+        <button class="order" type="button"><a class="order-link" href="{{ pizza.get_absolute_url }}">Заказать</a></button></div>
+
+
+    </div>
+{% endfor %}
+
+
+
+</div>
+
+
+{% endblock %}
+
+
+</body>
+</html>

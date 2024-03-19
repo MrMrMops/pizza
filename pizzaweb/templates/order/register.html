@@ -1,0 +1,18 @@
+{% extends 'order/base.html' %}
+
+{% block content %}
+<div class="placeholder-main">
+
+<form method="post">
+    {% csrf_token %}
+    {% for f in form %}
+    <p class="login"><label for="{{ f.id_for_label }}">{{ f.label }}: </label>{{f}}</p>
+    <p>{{f.errors}}</p>
+    {% endfor%}
+
+    <button type="submit">Зарегистрироваться</button>
+</form>
+
+</div>
+
+{% endblock %}
